@@ -1,0 +1,31 @@
+@layer components {
+  .btn-primary {
+    @apply flex items-center justify-center cursor-pointer gap-2 px-6 py-3 font-semibold rounded-md hover:opacity-90 bg-primary text-primary-foreground w-fit;
+  }
+
+  .btn-ghost {
+    @apply flex items-center justify-center cursor-pointer gap-2 px-6 py-3 font-semibold rounded-md hover:bg-accent bg-transparent text-card-foreground w-fit;
+  }
+}
+
+@layer utilities {
+  .title {
+    @apply text-2xl font-bold;
+  }
+
+  .input {
+    @apply h-12;
+  }
+}
+
+.ql-toolbar.ql-snow {
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-md) var(--radius-md) 0px 0px !important;
+  padding: 10px !important;
+}
+
+.ql-container.ql-snow {
+  border: 1px solid var(--color-border) !important;
+  border-top: none !important;
+  border-radius: 0px 0px var(--radius-md) var(--radius-md) !important;
+}

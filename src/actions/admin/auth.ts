@@ -59,11 +59,18 @@ export async function adminLogin(email: string, password: string) {
     });
 
     return { success: true, message: "Login successful" };
-  } catch (error: any) {
-    console.log(error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log(error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+
     return {
       success: false,
-      message: error.message || "Login failed",
+      message: "Login failed",
     };
   }
 }

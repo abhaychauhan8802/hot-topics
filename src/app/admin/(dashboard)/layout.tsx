@@ -1,6 +1,5 @@
 import Sidebar from "@/components/admin/Sidebar";
 import { getSession } from "@/lib/server/auth";
-import { Menu } from "lucide-react";
 import { redirect } from "next/navigation";
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {

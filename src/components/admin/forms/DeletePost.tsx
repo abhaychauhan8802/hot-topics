@@ -24,7 +24,7 @@ const DeletePost = ({
   postId: string;
 }) => {
   const [open, setOpen] = useState(false);
-  const [isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
   const router = useRouter();
 
   const handleDelete = async () => {
@@ -43,6 +43,8 @@ const DeletePost = ({
 
       setOpen(false);
     } catch (error) {
+      const err = error as Error;
+      console.log(err.message);
       toast.error("Error deleting post");
     }
   };

@@ -53,11 +53,18 @@ export const addPost = async (formData: FormData) => {
       success: true,
       message: "Post added successfully",
     };
-  } catch (error: any) {
-    console.log("Error adding post", error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log(error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+
     return {
       success: false,
-      message: error.message || "Error adding post",
+      message: "Adding Post failed",
     };
   }
 };
@@ -79,11 +86,18 @@ export const deletePost = async (
       success: true,
       message: "Post deleted successfully",
     };
-  } catch (error: any) {
-    console.log("Error deleting post", error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log(error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+
     return {
       success: false,
-      message: error.message || "Error deleting post",
+      message: "Adding Post failed",
     };
   }
 };

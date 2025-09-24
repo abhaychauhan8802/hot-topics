@@ -1,7 +1,6 @@
 "use client";
 
 import { deleteCategory } from "@/actions/admin/category";
-import { deletePost } from "@/actions/admin/post";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -25,7 +24,7 @@ const DeleteCatagory = ({
   categoryId: string;
 }) => {
   const [open, setOpen] = useState(false);
-  const [isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
   const router = useRouter();
 
   const handleDelete = async () => {
@@ -43,7 +42,9 @@ const DeleteCatagory = ({
       });
 
       setOpen(false);
-    } catch (error) {
+    } catch (error: unknown) {
+      const err = error as Error;
+      console.log(err.message);
       toast.error("Error deleting post");
     }
   };

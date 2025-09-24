@@ -1,8 +1,7 @@
 import NewsList from "@/components/NewsList";
-import PostCard from "@/components/PostCard";
 import { db } from "@/db/drizzle";
 import { categories, posts } from "@/db/schema";
-import { and, eq, like, sql } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 
 const Search = async ({
   searchParams,

@@ -43,7 +43,7 @@ const CategoryForm = ({
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,8 +83,9 @@ const CategoryForm = ({
 
       setOpen(false);
       setName("");
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error: unknown) {
+      const err = error as Error;
+      toast.error(err.message);
     } finally {
       setLoading(false);
     }

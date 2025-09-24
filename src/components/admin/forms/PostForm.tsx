@@ -20,7 +20,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -93,8 +92,9 @@ const PostForm = ({ type, categories, ...post }: Props) => {
       }
 
       router.push("/admin/posts");
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error: unknown) {
+      const err = error as Error;
+      toast.error(err.message);
     } finally {
       form.reset();
       setLoading(false);
@@ -181,7 +181,7 @@ const PostForm = ({ type, categories, ...post }: Props) => {
                 <Controller
                   name="image"
                   control={form.control}
-                  render={({ field: { onChange, value } }) => (
+                  render={({ field: { onChange } }) => (
                     <Input
                       type="file"
                       accept="image/*"

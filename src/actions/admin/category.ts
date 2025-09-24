@@ -2,7 +2,6 @@
 
 import { db } from "@/db/drizzle";
 import { categories, posts } from "@/db/schema";
-import { UUID } from "crypto";
 import { eq } from "drizzle-orm";
 
 export const addCategory = async (name: string) => {
@@ -22,9 +21,19 @@ export const addCategory = async (name: string) => {
       success: true,
       message: "Category added successfully",
     };
-  } catch (error) {
-    console.log("Error adding category:", error);
-    return { success: false, message: "Error adding category" };
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log(error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
+
+    return {
+      success: false,
+      message: "Error adding category",
+    };
   }
 };
 
@@ -48,8 +57,14 @@ export const updateCategory = async (id: string, name: string) => {
       success: true,
       message: "Category updated successfully",
     };
-  } catch (error) {
-    console.log("Error updating category:", error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log("Error updating category:", error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
     return {
       success: false,
       message: "Error updating category",
@@ -86,11 +101,17 @@ export const deleteCategory = async (id: string) => {
       success: true,
       message: "Category deleted successfully",
     };
-  } catch (error: any) {
-    console.log("Error deleting category", error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log("Error deleting category:", error.message);
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
     return {
       success: false,
-      message: error.message || "Error deleting category",
+      message: "Error deleting category",
     };
   }
 };

@@ -1,8 +1,15 @@
 import { db } from "@/db/drizzle";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { posts } from "@/db/schema";
-import { asc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import PostCard from "./PostCard";
+import Link from "next/link";
 
 const CategoryPost = async ({
   category,
@@ -21,13 +28,18 @@ const CategoryPost = async ({
     })
     .from(posts)
     .where(eq(posts.categoryId, category.id))
-    .orderBy(asc(posts.createdAt))
+    .orderBy(desc(posts.createdAt))
     .limit(4);
 
   return (
     <Card>
       <CardHeader>
         <CardTitle className="capitalize">{category.name}</CardTitle>
+        <CardAction>
+          <Link href={`/category/${category.name}`} className="text-sm">
+            View All
+          </Link>
+        </CardAction>
       </CardHeader>
       <CardContent className="space-y-5">
         {categoryPosts.length > 0 ? (

@@ -2,15 +2,26 @@ import NewsList from "@/components/NewsList";
 import { db } from "@/db/drizzle";
 import { categories, posts } from "@/db/schema";
 import { eq, sql } from "drizzle-orm";
+import { notFound } from "next/navigation";
 
-const Search = async ({
-  searchParams,
+const Category = async ({
+  params,
 }: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  params: Promise<{ category: string }>;
 }) => {
-  const { q } = await searchParams;
+  const category = (await params).category;
 
-  const postsBasedOnQuery = await db
+  const [iscategory] = await db
+    .select({ name: categories.name })
+    .from(categories)
+    .where(eq(categories.name, category))
+    .limit(1);
+
+  if (!iscategory) {
+    return notFound();
+  }
+
+  const postsBasedOnCategory = await db
     .select({
       id: posts.id,
       title: posts.title,
@@ -20,23 +31,23 @@ const Search = async ({
     })
     .from(posts)
     .leftJoin(categories, eq(categories.id, posts.categoryId))
-    .where(sql`${posts.title} ILIKE ${"%" + q + "%"}`);
+    .where(eq(categories.name, category));
 
   return (
     <div className="min-h-screen">
       <h1 className="title mt-10">
-        Results for: <span className="text-primary">{q}</span>
+        <span className="capitalize">{category}</span>
       </h1>
 
       <div className="mt-5">
-        {postsBasedOnQuery.length === 0 ? (
+        {postsBasedOnCategory.length === 0 ? (
           <p className="text-center text-2xl">No results found</p>
         ) : (
-          <NewsList posts={postsBasedOnQuery} />
+          <NewsList posts={postsBasedOnCategory} />
         )}
       </div>
     </div>
   );
 };
 
-export default Search;
+export default Category;

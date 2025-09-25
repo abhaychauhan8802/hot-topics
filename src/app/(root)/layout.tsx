@@ -1,11 +1,20 @@
 import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
+import { db } from "@/db/drizzle";
+import { categories } from "@/db/schema";
+import { asc } from "drizzle-orm";
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+  const topCategories = await db
+    .select({ name: categories.name })
+    .from(categories)
+    .orderBy(asc(categories.name))
+    .limit(8);
+
   return (
     <>
+      <Navbar categories={topCategories} />
       <main className="max-w-6xl mx-auto w-full px-4">
-        <Header />
         <div className="pb-10">{children}</div>
       </main>
       <Footer />

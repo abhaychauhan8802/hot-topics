@@ -4,6 +4,8 @@ import { db } from "@/db/drizzle";
 import { categories, posts } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
+
 const Home = async () => {
   const latestPosts = await db
     .select({

@@ -1,7 +1,7 @@
 import NewsList from "@/components/NewsList";
 import { db } from "@/db/drizzle";
 import { categories, posts } from "@/db/schema";
-import { eq, sql } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 
 const Category = async ({
@@ -31,7 +31,8 @@ const Category = async ({
     })
     .from(posts)
     .leftJoin(categories, eq(categories.id, posts.categoryId))
-    .where(eq(categories.name, category));
+    .where(eq(categories.name, category))
+    .orderBy(desc(posts.createdAt));
 
   return (
     <div className="min-h-screen">

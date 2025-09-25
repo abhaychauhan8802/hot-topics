@@ -69,17 +69,17 @@ const Login = () => {
         <h1 className="text-2xl font-bold">HotTopicsHub</h1>
       </div>
 
-      <Card className="w-full max-w-sm max-sm:shadow-none max-sm:border-0 max-sm:bg-background">
-        <CardHeader>
-          <CardTitle className="text-xl font-bold">
-            Login to your account
-          </CardTitle>
-          <CardDescription>
-            Enter your email below to login to your account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form>
+      <form onSubmit={handleLogin} className="w-full max-w-sm">
+        <Card className="w-full max-w-sm max-sm:shadow-none max-sm:border-0 max-sm:bg-background">
+          <CardHeader>
+            <CardTitle className="text-xl font-bold">
+              Login to your account
+            </CardTitle>
+            <CardDescription>
+              Enter your email below to login to your account
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
@@ -110,24 +110,20 @@ const Login = () => {
                 />
               </div>
             </div>
-          </form>
-        </CardContent>
-        <CardFooter className="flex-col gap-2">
-          <button
-            type="submit"
-            className="btn-primary w-full"
-            onClick={handleLogin}
-          >
-            {loading ? (
-              <span className="flex items-center gap-2">
-                <Loader className="animate-spin" size={16} /> Loading...
-              </span>
-            ) : (
-              "Login"
-            )}
-          </button>
-        </CardFooter>
-      </Card>
+          </CardContent>
+          <CardFooter className="flex-col gap-2">
+            <button type="submit" className="btn-primary w-full">
+              {loading ? (
+                <span className="flex items-center gap-2">
+                  <Loader className="animate-spin" size={16} /> Loading...
+                </span>
+              ) : (
+                "Login"
+              )}
+            </button>
+          </CardFooter>
+        </Card>
+      </form>
     </div>
   );
 };

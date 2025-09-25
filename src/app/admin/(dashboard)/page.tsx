@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from "@/db/drizzle";
 import { categories, posts } from "@/db/schema";
 import { getSession } from "@/lib/server/auth";
-import { asc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 const AdminDashboard = async () => {
   const session = await getSession();
@@ -22,7 +22,7 @@ const AdminDashboard = async () => {
     })
     .from(posts)
     .leftJoin(categories, eq(categories.id, posts.categoryId))
-    .orderBy(asc(posts.createdAt))
+    .orderBy(desc(posts.createdAt))
     .limit(5);
 
   return (

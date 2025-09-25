@@ -1,3 +1,5 @@
+"use server";
+
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import config from "@/lib/config";
@@ -23,3 +25,11 @@ export async function getSession() {
     return null;
   }
 }
+
+export const logout = async () => {
+  try {
+    (await cookies()).delete("token");
+  } catch {
+    return null;
+  }
+};

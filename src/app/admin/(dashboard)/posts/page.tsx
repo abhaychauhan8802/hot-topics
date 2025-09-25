@@ -1,7 +1,7 @@
 import PostTable from "@/components/admin/PostTable";
 import { db } from "@/db/drizzle";
 import { categories, posts } from "@/db/schema";
-import { asc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
@@ -18,7 +18,7 @@ const Posts = async () => {
     })
     .from(posts)
     .leftJoin(categories, eq(categories.id, posts.categoryId))
-    .orderBy(asc(posts.createdAt));
+    .orderBy(desc(posts.createdAt));
 
   return (
     <div>

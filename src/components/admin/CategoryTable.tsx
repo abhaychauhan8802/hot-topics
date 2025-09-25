@@ -40,7 +40,7 @@ const CategoryTable = ({
             <TableCell>{category.date.toLocaleDateString()}</TableCell>
             <TableCell>
               <span className="flex gap-2 items-center">
-                <Link href={`/search?category=${category.name}`}>
+                <Link href={`/category/${category.name}`}>
                   <button>
                     <ExternalLink size={ICON_SIZE} />
                   </button>

@@ -37,7 +37,7 @@ const SearchDialog = () => {
       </DialogTrigger>
       <DialogContent
         showCloseButton={false}
-        className="p-0 bg-transparent border-none"
+        className="p-0 bg-transparent border-none max-sm:top-20 shadow-none"
       >
         <DialogTitle className="hidden">Search</DialogTitle>
         <form

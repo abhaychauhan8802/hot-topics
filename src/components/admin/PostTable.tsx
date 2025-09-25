@@ -22,7 +22,7 @@ const PostTable = ({
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[120px]">Image</TableHead>
+          <TableHead className="w-[100px]">Image</TableHead>
           <TableHead>Title</TableHead>
           <TableHead>Category</TableHead>
           <TableHead>Create Date</TableHead>
@@ -32,17 +32,19 @@ const PostTable = ({
       <TableBody>
         {posts.map((post) => (
           <TableRow key={post.id}>
-            <TableCell>
+            <TableCell className="aspect-video overflow-hidden w-[80px] rounded-xl shrink-0">
               <Image
                 src={post.imageUrl}
                 alt={post.title}
-                width={100}
-                height={50}
+                width={50}
+                height={10}
                 loading="lazy"
-                className="w-[100px] h-[50px] object-cover"
+                className="w-full h-full object-cover"
               />
             </TableCell>
-            <TableCell className="font-medium">{post.title}</TableCell>
+            <TableCell className="font-medium max-w-[200px] overflow-hidden pr-20">
+              {post.title}
+            </TableCell>
             <TableCell>{post.category}</TableCell>
             <TableCell>{post.createdAt!.toLocaleDateString()}</TableCell>
             <TableCell>

@@ -21,8 +21,6 @@ const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
     .where(eq(posts.slug, slug))
     .limit(1);
 
-  console.log(post);
-
   return (
     <div className="min-h-screen max-w-4xl w-full mx-auto mt-10">
       <div className="mb-5">

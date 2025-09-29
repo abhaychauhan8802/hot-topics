@@ -7,6 +7,7 @@ const config = {
       apiKey: process.env.CLOUDINARY_API_KEY!,
       apiSecret: process.env.CLOUDINARY_API_SECRET!,
     },
+    adminSecret: process.env.ADMIN_SECRET!,
   },
 };
 

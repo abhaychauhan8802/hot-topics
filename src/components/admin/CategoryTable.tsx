@@ -34,7 +34,7 @@ const CategoryTable = ({
       </TableHeader>
       <TableBody>
         {categories.map((category, idx) => (
-          <TableRow key={`row-${category.id}-${idx}`}>
+          <TableRow key={idx}>
             <TableCell>{idx + 1}</TableCell>
             <TableCell className="font-medium">{category.name}</TableCell>
             <TableCell>{category.date.toLocaleDateString()}</TableCell>

@@ -52,14 +52,14 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="sm:hidden absolute top-2 left-3">
+      <div className="sm:hidden absolute top-2 left-5">
         <Button variant="outline" onClick={() => setOpen(!open)}>
           <Menu />
         </Button>
       </div>
       <div
         className={cn(
-          "fixed top-0 left-[-200px] sm:left-0 w-[200px] lg:w-[250px] h-screen border-r py-4 px-3 flex flex-col justify-between bg-background z-10",
+          "fixed top-0 left-[-200px] sm:left-0 w-[200px] lg:w-[250px] h-screen border-r py-4 px-3 flex flex-col justify-between bg-background z-20",
           open ? "left-0" : "left-[-200px]"
         )}
       >

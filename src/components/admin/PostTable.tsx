@@ -30,8 +30,8 @@ const PostTable = ({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {posts.map((post) => (
-          <TableRow key={post.id}>
+        {posts.map((post, idx) => (
+          <TableRow key={idx}>
             <TableCell className="aspect-video overflow-hidden w-[80px] rounded-xl shrink-0">
               <Image
                 src={post.imageUrl}

@@ -23,7 +23,7 @@ const AdminDashboard = async () => {
     .from(posts)
     .leftJoin(categories, eq(categories.id, posts.categoryId))
     .orderBy(desc(posts.createdAt))
-    .limit(5);
+    .limit(10);
 
   return (
     <div>
